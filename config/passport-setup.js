@@ -3,6 +3,18 @@ const GoogleStrategy=require('passport-google-oauth20').Strategy;
 const keys=require('./keys');
 const User=require('../models/user-model');
 
+
+passport.serializeUser((user,done)=>{
+    done(null,user.id)
+})
+
+passport.deserializeUser((id,done)=>{
+    User.findById(id).then((user)=>{
+        done(null,user);
+    })
+})
+
+
 passport.use(
     new GoogleStrategy({
         //options for google strategy
@@ -19,6 +31,7 @@ passport.use(
             if(curUser)
                 {  
                 console.log("User is :"+curUser);
+                done(null,curUser);
                 }
                 else{
                     new User({
@@ -27,10 +40,13 @@ passport.use(
                     }).save()
                     .then((newUser)=>{
                         console.log('new user was created:'+newUser)
+                        done(null,newUser);
                     })
                 }
-                
             })
-
+            .catch(err=>{
+                console.log(err);
+            })
+            
     }
 ))

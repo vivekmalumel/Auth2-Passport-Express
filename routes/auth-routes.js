@@ -11,9 +11,10 @@ router.get('/google',passport.authenticate('google',{
     scope:['profile']
 }));
 
-// callback route for google to redirect to
+// callback route for google to redirect to: alredy given in api console
 router.get('/google/redirect',passport.authenticate('google'), (req, res) => {
-    res.send('you reached the redirect URI');
+    //res.send(req.user);
+    res.redirect('/profile')
 });
 
 router.get('/logout',(req,res)=>{

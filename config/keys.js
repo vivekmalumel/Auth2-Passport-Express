@@ -7,5 +7,8 @@ module.exports={
     },
     mongodb:{
         dbURI:'mongodb+srv://vivek:vivek123@oauth-ykty8.mongodb.net/mydb'
+    },
+    session:{
+        cookieKey:'ahshjsjksjksshsnnslsjdkjdk'
     }
 }
