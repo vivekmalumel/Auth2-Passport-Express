@@ -33,7 +33,7 @@ mongoose.connect(keys.mongodb.dbURI,{useNewUrlParser: true},()=>{
     app.use('/profile',profileRoutes);
 //create Home Route
  app.get('/',(req,res)=>{
-    res.render("home");// in views/home.ejs
+    res.render("home",{user:req.user});// in views/home.ejs
  })
 
 
